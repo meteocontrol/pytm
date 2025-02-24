@@ -37,7 +37,7 @@ def sev_to_color(sev):
     if sev == 5:
         return 'firebrick3; fillcolor="#b2222222"; style=filled '
     elif sev <= 4 and sev >= 2:
-        return 'gold; fillcolor="#ffd80022"; style=filled'
+        return 'orange; fillcolor="#ffd80022"; style=filled'
     elif sev < 2 and sev >= 0:
         return 'darkgreen; fillcolor="#00630022"; style=filled'
 
@@ -1476,7 +1476,7 @@ a custom response, CVSS score or override other attributes.""",
             return ""
 
         color = self._color()
-        if kwargs.get("colormap", False):
+        if kwargs.get("colormap", False) and self.inScope is True:
             color = sev_to_color(self.severity)
 
         return self._dfd_template().format(
@@ -1490,7 +1490,7 @@ a custom response, CVSS score or override other attributes.""",
         if self.inScope is True:
             return "black"
         else:
-            return "grey69"
+            return 'grey69; fillcolor="grey93"; style=filled'
 
     def display_name(self):
         return self.name
@@ -1724,7 +1724,7 @@ class Lambda(Asset):
 
         color = self._color()
 
-        if kwargs.get("colormap", False):
+        if kwargs.get("colormap", False) and self.inScope is True:
             color = sev_to_color(self.severity)
 
         return self._dfd_template().format(
@@ -1815,7 +1815,7 @@ is any information relating to an identifiable person.""",
         color = self._color()
         color_file = "black"
 
-        if kwargs.get("colormap", False):
+        if kwargs.get("colormap", False) and self.inScope is True:
             color = sev_to_color(self.severity)
             color_file = color.split(";")[0]
 
@@ -1927,7 +1927,7 @@ class Dataflow(Element):
 
         color = self._color()
 
-        if kwargs.get("colormap", False):
+        if kwargs.get("colormap", False) and self.inScope is True:
             color = sev_to_color(self.severity)
 
         direction = "forward"
