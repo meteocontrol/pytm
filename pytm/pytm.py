@@ -1790,15 +1790,11 @@ is any information relating to an identifiable person.""",
     def _dfd_template(self):
         return """{uniq_name} [
     shape = {shape};
-    fixedsize = shape;
-    image = "{image}";
-    imagescale = true;
     color = {color};
     fontcolor = black;
     xlabel = "{label}";
     label = "";
-    width = 0.7;
-    height = 0.5;
+    style = "filled";
 ]
 """
 
@@ -1813,20 +1809,15 @@ is any information relating to an identifiable person.""",
             return ""
 
         color = self._color()
-        color_file = "black"
 
         if kwargs.get("colormap", False) and self.inScope is True:
             color = sev_to_color(self.severity)
-            color_file = color.split(";")[0]
 
         return self._dfd_template().format(
             uniq_name=self._uniq_name(),
             label=self._label(),
             color=color,
             shape=self._shape(),
-            image=os.path.join(
-                os.path.dirname(__file__), "images", f"datastore_{color_file}.png"
-            ),
         )
 
 
