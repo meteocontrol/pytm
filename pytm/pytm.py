@@ -683,6 +683,7 @@ class Finding:
     severity = varString("", required=True, doc="Threat severity")
     mitigations = varString("", required=True, doc="Threat mitigations")
     example = varString("", required=True, doc="Threat example")
+    ticket_id = varString("", required=False, doc="Ticket ID")
     id = varString("", required=True, doc="Finding ID")
     threat_id = varString("", required=True, doc="Threat ID")
     references = varString("", required=True, doc="Threat references")
@@ -2088,6 +2089,7 @@ def encode_threat_data(obj):
         "example",
         "id",
         "threat_id",
+        "ticket_id",
         "references",
         "condition",
         "cvss",
